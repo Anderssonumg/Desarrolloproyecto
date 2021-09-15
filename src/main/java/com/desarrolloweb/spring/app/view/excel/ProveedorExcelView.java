@@ -47,6 +47,19 @@ public class ProveedorExcelView extends AbstractXlsxView {
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+try {
+			response.setHeader("Content-Disposition", "attachment; filename=\"reporte_proveedores.xlsx\"");
+			Sheet sheet = workbook.createSheet("proveedoreslista");
+			response.setHeader("Content-Disposition", "attachment; filename=\"reporte_clientes.xlsx\"");
+			Iterable<Proveedor> ite= (Iterable<Proveedor>) model.get("proveedoresPdf");;
+			int acum=4;	
+			CellStyle estilotit = workbook.createCellStyle();
+			CellStyle estilo = workbook.createCellStyle();
+			Font fuentetit = workbook.createFont();
+			Font fuente = workbook.createFont();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 }
