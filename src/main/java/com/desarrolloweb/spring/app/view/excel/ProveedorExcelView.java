@@ -67,6 +67,20 @@ try {
 			fuente.setColor(IndexedColors.BLACK.index);
 			fuente.setFontName("Arial");
 			estilo.setFont(fuente);
+                        Row row = sheet.createRow(0);
+			Cell cell = row.createCell(0);
+			cell.setCellValue("Listado");
+			cell.setCellStyle(estilotit);
+			row = sheet.createRow(1);
+			cell = row.createCell(0);
+			cell.setCellValue("id");
+			cell.setCellStyle(estilo);
+			cell = row.createCell(1);
+			cell.setCellValue("nombre");
+			cell.setCellStyle(estilo);
+			cell = row.createCell(2);
+			cell.setCellValue("e-mail");
+			cell.setCellStyle(estilo);
 
 		} catch (Exception e) {
 			e.printStackTrace();
