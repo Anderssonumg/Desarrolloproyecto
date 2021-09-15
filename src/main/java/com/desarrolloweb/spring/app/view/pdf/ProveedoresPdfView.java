@@ -38,7 +38,23 @@ public class ProveedoresPdfView extends AbstractPdfView {
 	@Override
 	protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-	//PRUEBA COMMIT
+		Iterable<Proveedor> ite= (Iterable<Proveedor>) model.get("proveedoresPdf");
+		PdfPTable t = new PdfPTable(1);
+		PdfPCell estilo = new PdfPCell();
+		Font fuente = FontFactory.getFont(FontFactory.TIMES_ROMAN);
+		fuente.setColor(Color.WHITE);
+		fuente.setSize(14);
+		estilo.setBorderColor(Color.BLUE);
+		estilo.setBackgroundColor(Color.GRAY);
+		estilo.setBorderWidth(1);
+		estilo.setPhrase(new Phrase("Lista proveedores",fuente));
+		t.setSpacingAfter(20);
+		t.addCell(estilo);	
+		for(Proveedor proveedor:ite) {
+			estilo.setPhrase(new Phrase(proveedor.getId() + " - " + proveedor.getNombre() + " - " + proveedor.getEmail() + "  ",fuente));	
+			t.addCell(estilo);
+		}
+		document.add(t);
 
 			}
 

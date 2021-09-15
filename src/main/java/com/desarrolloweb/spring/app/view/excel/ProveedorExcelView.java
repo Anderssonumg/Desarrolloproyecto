@@ -52,22 +52,22 @@ try {
 			Sheet sheet = workbook.createSheet("proveedoreslista");
 			response.setHeader("Content-Disposition", "attachment; filename=\"reporte_clientes.xlsx\"");
 			Iterable<Proveedor> ite= (Iterable<Proveedor>) model.get("proveedoresPdf");;
-			int acum=4;	
+			int acum=2;	
 			CellStyle estilotit = workbook.createCellStyle();
 			CellStyle estilo = workbook.createCellStyle();
 			Font fuentetit = workbook.createFont();
 			Font fuente = workbook.createFont();
-                        estilotit.setAlignment(HorizontalAlignment.CENTER);
-			estilotit.setColor(IndexedColors.PINK.index);
-			estilotit.setFontName("Arial");
+            estilotit.setAlignment(HorizontalAlignment.CENTER);
+			fuentetit.setColor(IndexedColors.BLACK.index);
+			fuentetit.setFontName("Arial");
 			estilotit.setFont(fuentetit);
-			estilo.setFillForegroundColor(IndexedColors.PINK.index);
+			estilo.setFillForegroundColor(IndexedColors.BLUE.index);
 			estilo.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			estilo.setAlignment(HorizontalAlignment.CENTER);
-			fuente.setColor(IndexedColors.BLACK.index);
+			fuente.setColor(IndexedColors.YELLOW.index);
 			fuente.setFontName("Arial");
 			estilo.setFont(fuente);
-                        Row row = sheet.createRow(0);
+            Row row = sheet.createRow(0);
 			Cell cell = row.createCell(0);
 			cell.setCellValue("Listado");
 			cell.setCellStyle(estilotit);
@@ -81,7 +81,22 @@ try {
 			cell = row.createCell(2);
 			cell.setCellValue("e-mail");
 			cell.setCellStyle(estilo);
-
+			for(Proveedor proveedor: ite) {
+			row = sheet.createRow(acum);
+			cell = row.createCell(0);
+				cell.setCellValue(proveedor.getId());
+				cell.setCellStyle(estilo);
+				cell = row.createCell(1);
+				cell.setCellValue(proveedor.getNombre());
+				cell.setCellStyle(estilo);
+				cell = row.createCell(2);
+				cell.setCellValue(proveedor.getEmail());
+				cell.setCellStyle(estilo);
+				acum++;
+			}
+			sheet.autoSizeColumn(1);
+			sheet.autoSizeColumn(2);
+			sheet.autoSizeColumn(3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
