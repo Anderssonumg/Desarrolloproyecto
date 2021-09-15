@@ -57,6 +57,17 @@ try {
 			CellStyle estilo = workbook.createCellStyle();
 			Font fuentetit = workbook.createFont();
 			Font fuente = workbook.createFont();
+                        estilotit.setAlignment(HorizontalAlignment.CENTER);
+			estilotit.setColor(IndexedColors.PINK.index);
+			estilotit.setFontName("Arial");
+			estilotit.setFont(fuentetit);
+			estilo.setFillForegroundColor(IndexedColors.PINK.index);
+			estilo.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			estilo.setAlignment(HorizontalAlignment.CENTER);
+			fuente.setColor(IndexedColors.BLACK.index);
+			fuente.setFontName("Arial");
+			estilo.setFont(fuente);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
